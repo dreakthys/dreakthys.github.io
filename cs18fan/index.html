@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cs1.8反恐精英网页版 - 经典CS1.6风格射击游戏在线玩法与入门指南</title>
+<meta name="description" content="cs1.8反恐精英网页版是围绕经典反恐精英系列射击玩法打造的在线游戏信息页，介绍武器系统、地图模式、操作技巧、配置要求与常见问题，帮助玩家快速了解网页版CS的玩法特点与入门方法。">
+<meta name="keywords" content="cs1.8反恐精英网页版,反恐精英网页版,CS网页版,CS1.6在线玩,射击游戏网页版">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-dark: #0d1117;
+  --bg-panel: #161b22;
+  --bg-card: #1c2230;
+  --border: #2b3342;
+  --accent: #f0a500;
+  --accent-2: #e05e00;
+  --blue: #3d8bfd;
+  --text: #e6edf3;
+  --text-dim: #9aa7b8;
+  --green: #2ea043;
+}
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== 顶部栏 ===== */
+.topbar {
+  background: #090c11;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.topbar-inner span { color: var(--accent); }
+
+/* ===== 页眉 ===== */
+header.site-header {
+  background: linear-gradient(135deg, #131a26 0%, #0d1117 70%);
+  border-bottom: 2px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+header.site-header::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(240,165,0,0.16) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-mark {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: #1a1200;
+  letter-spacing: -1px;
+  box-shadow: 0 4px 14px rgba(240,165,0,0.35);
+}
+.logo-text h1 {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.logo-text p {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #1a1200;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--text);
+  background: rgba(255,255,255,0.02);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== 导航 ===== */
+nav.main-nav {
+  background: #10151d;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-inner a {
+  padding: 14px 18px;
+  font-size: 14.5px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+}
+.nav-inner a:hover, .nav-inner a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ===== 首屏 ===== */
+.hero {
+  background:
+    linear-gradient(rgba(9,12,17,0.82), rgba(9,12,17,0.94)),
+    repeating-linear-gradient(45deg, #131a26 0, #131a26 12px, #0f151e 12px, #0f151e 24px);
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 54px 20px 50px;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 12.5px;
+  color: var(--accent);
+  border: 1px solid rgba(240,165,0,0.4);
+  background: rgba(240,165,0,0.08);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.hero h2 {
+  font-size: 34px;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  font-weight: 800;
+}
+.hero h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero p.lead {
+  color: var(--text-dim);
+  font-size: 15.5px;
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+}
+.hero-panel h3 {
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+  letter-spacing: 1px;
+}
+.stat-list { list-style: none; }
+.stat-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(43,51,66,0.6);
+  color: var(--text-dim);
+}
+.stat-list li:last-child { border-bottom: none; }
+.stat-list li b { color: var(--text); font-weight: 600; }
+
+/* ===== 通用区块 ===== */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  border-left: 4px solid var(--accent);
+  padding-left: 14px;
+}
+.section-head h2 {
+  font-size: 23px;
+  font-weight: 700;
+}
+.section-head p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.section-head .more {
+  font-size: 13.5px;
+  color: var(--accent);
+}
+
+/* ===== 模式卡片 ===== */
+.grid-modes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.mode-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 18px;
+  transition: transform .2s, border-color .2s;
+}
+.mode-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.mode-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.mode-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.mode-card p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
+/* ===== 武器区 ===== */
+.weapon-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.weapon-item {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.weapon-badge {
+  flex: 0 0 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: rgba(61,139,253,0.12);
+  border: 1px solid rgba(61,139,253,0.35);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+.weapon-item h3 { font-size: 15.5px; margin-bottom: 5px; }
+.weapon-item p { font-size: 13.5px; color: var(--text-dim); }
+
+/* ===== 地图列表 ===== */
+.map-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.map-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.map-row .map-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  min-width: 82px;
+}
+.map-row .map-desc {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  flex: 1;
+}
+.map-row .map-tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(46,160,67,0.12);
+  border: 1px solid rgba(46,160,67,0.4);
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* ===== 攻略文章 ===== */
+.article-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+}
+.article-main {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px;
+}
+.article-main h3 {
+  font-size: 19px;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.article-main p {
+  color: var(--text-dim);
+  font-size: 14.5px;
+  margin-bottom: 14px;
+}
+.article-main ul {
+  margin: 0 0 14px 20px;
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+.article-main ul li { margin-bottom: 7px; }
+.article-main ul li b { color: var(--text); }
+
+.side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.side-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.side-card h4 {
+  font-size: 14.5px;
+  margin-bottom: 8px;
+  color: var(--blue);
+}
+.side-card p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
+/* ===== 配置表 ===== */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 520px;
+}
+thead {
+  background: #12171f;
+}
+th, td {
+  padding: 13px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.5px;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+td { color: var(--text-dim); }
+td strong { color: var(--text); }
+
+/* ===== FAQ ===== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+  padding-right: 46px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 400;
+}
+.faq-item[open] summary::after { content: "–"; }
+.faq-item[open] summary { color: var(--accent); }
+.faq-body {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  color: var(--text-dim);
+  border-top: 1px dashed var(--border);
+  padding-top: 14px;
+}
+
+/* ===== 提示条 ===== */
+.notice {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.notice-inner {
+  background: rgba(240,165,0,0.07);
+  border: 1px solid rgba(240,165,0,0.3);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.notice-inner b { color: var(--accent); white-space: nowrap; }
+
+/* ===== 页脚 ===== */
+footer.site-footer {
+  background: #090c11;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 24px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 30px;
+}
+.footer-col h4 {
+  font-size: 14.5px;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.footer-col p, .footer-col li {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 2;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul a:hover { color: var(--accent); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 12.5px;
+  color: #6b7686;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 980px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 30px; }
+  .grid-modes { grid-template-columns: repeat(2, 1fr); }
+  .weapon-wrap { grid-template-columns: repeat(2, 1fr); }
+  .article-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .header-inner { flex-direction: column; align-items: flex-start; }
+  .hero h2 { font-size: 25px; }
+  .hero-inner { padding: 36px 16px; }
+  .section { padding: 36px 16px; }
+  .grid-modes { grid-template-columns: 1fr; }
+  .weapon-wrap { grid-template-columns: 1fr; }
+  .map-list { grid-template-columns: 1fr; }
+  .map-row { flex-wrap: wrap; }
+  .footer-inner { grid-template-columns: 1fr; gap: 22px; }
+  .section-head h2 { font-size: 20px; }
+  .article-main { padding: 20px; }
+  .topbar-inner { justify-content: center; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部信息条 -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>经典射击玩法资料站 · 页面内容以玩法说明与入门指引为主</div>
+    <div>关键词：<span>cs1.8反恐精英网页版</span></div>
+  </div>
+</div>
+
+<!-- 页眉 -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">CS</div>
+      <div class="logo-text">
+        <h1>cs1.8反恐精英网页版</h1>
+        <p>经典反恐精英射击玩法 · 网页版入门与资料</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="#modes" class="btn btn-primary">查看玩法模式</a>
+      <a href="#faq" class="btn btn-ghost">常见问题</a>
+    </div>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="#intro" class="active">玩法概览</a>
+    <a href="#modes">对战模式</a>
+    <a href="#weapons">武器系统</a>
+    <a href="#maps">经典地图</a>
+    <a href="#guide">入门攻略</a>
+    <a href="#config">配置参考</a>
+    <a href="#faq">常见问题</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- 首屏 -->
+  <section class="hero" id="intro">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-tag">CLASSIC SHOOTER · 网页端体验</span>
+        <h2>在浏览器里重温 <em>反恐精英</em> 的经典对抗节奏</h2>
+        <p class="lead">
+          cs1.8反恐精英网页版属于围绕经典反恐精英（Counter-Strike）系列玩法展开的网页端射击游戏形态。
+          它保留了警匪双方对抗、回合制经济、武器购买、炸弹拆除与营救人质等核心机制，
+          玩家无需安装大型客户端，通过浏览器即可进入对局。本页整理了这类网页版游戏的模式构成、
+          武器特点、地图结构、操作要点与常见疑问，供初次接触的玩家参考。
+        </p>
+        <div class="hero-btns">
+          <a href="#guide" class="btn btn-primary">阅读入门攻略</a>
+          <a href="#modes" class="btn btn-ghost">了解对战模式</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <h3>玩法核心要素一览</h3>
+        <ul class="stat-list">
+          <li><span>对抗结构</span><b>反恐精英 vs 恐怖分子</b></li>
+          <li><span>回合机制</span><b>购买 · 交战 · 结算</b></li>
+          <li><span>经济系统</span><b>击杀与回合奖励</b></li>
+          <li><span>胜负条件</span><b>拆弹 / 救人质 / 全歼</b></li>
+          <li><span>操作方式</span><b>键鼠为主，部分支持触屏</b></li>
+          <li><span>运行环境</span><b>浏览器直接打开</b></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 提示条 -->
+  <div class="notice" style="margin-top:26px;">
+    <div class="notice-inner">
+      <b>说明：</b>
+      <span>
+        网页版射击游戏的实际内容、可用模式与操作方式，会因具体平台和版本而存在差异。
+        本页内容用于介绍经典反恐精英玩法的通用知识，具体功能请以你实际访问的游戏页面为准。
+      </span>
+    </div>
+  </div>
+
+  <!-- 对战模式 -->
+  <section class="section" id="modes">
+    <div class="section-head">
+      <div>
+        <h2>主要对战模式</h2>
+        <p>网页版通常围绕以下几种经典模式组织对局</p>
+      </div>
+      <a href="#guide" class="more">玩法细节 →</a>
+    </div>
+    <div class="grid-modes">
+      <article class="mode-card">
+        <div class="mode-icon">💣</div>
+        <h3>炸弹拆除模式</h3>
+        <p>恐怖分子携带 C4 前往指定包点安放炸弹，反恐精英需要在倒计时内完成拆除。回合节奏紧凑，是系列中最具代表性的模式。</p>
+      </article>
+      <article class="mode-card">
+        <div class="mode-icon">🛡️</div>
+        <h3>人质营救模式</h3>
+        <p>反恐精英需进入恐怖分子控制区域，将人质护送至救援点；恐怖分子则负责阻止营救。对团队配合与路线选择要求较高。</p>
+      </article>
+      <article class="mode-card">
+        <div class="mode-icon">🎯</div>
+        <h3>歼灭对抗模式</h3>
+        <p>以消灭对方全部成员为目标的简化规则，回合时间较短，适合快速熟悉枪械手感与走位节奏。</p>
+      </article>
+      <article class="mode-card">
+        <div class="mode-icon">🤝</div>
+        <h3>团队竞技模式</h3>
+        <p>双方在固定区域内持续复活交战，弱化经济与回合压力，更侧重即时反应与枪法练习。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 武器系统 -->
+  <section class="section" id="weapons" style="padding-top:0;">
+    <div class="section-head">
+      <div>
+        <h2>武器系统与选择思路</h2>
+        <p>不同枪械在射速、精度、伤害与价格上各有取舍</p>
+      </div>
+    </div>
+    <div class="weapon-wrap">
+      <div class="weapon-item">
+        <div class="weapon-badge">步枪</div>
+        <div>
+          <h3>突击步枪</h3>
+          <p>以 AK 系列与 M4 系列为代表，中远距离威力稳定，是多数回合的主力选择。点射与短连发更易控制弹道。</p>
+        </div>
+      </div>
+      <div class="weapon-item">
+        <div class="weapon-badge">狙击</div>
+        <div>
+          <h3>狙击步枪</h3>
+          <p>AWP 类武器单发伤害高，但移动与开镜节奏慢，需要卡点与预瞄配合，对地图理解要求较高。</p>
+        </div>
+      </div>
+      <div class="weapon-item">
+        <div class="weapon-badge">冲锋</div>
+        <div>
+          <h3>冲锋枪</h3>
+          <p>价格较低、射速快，适合经济局或近距离突进。缺点是远距离伤害衰减明显，需要贴近交战。</p>
+        </div>
+      </div>
+      <div class="weapon-item">
+        <div class="weapon-badge">手枪</div>
+        <div>
+          <h3>手枪</h3>
+          <p>回合初始自带，也是经济紧张时的过渡选择。单发精度较好，爆头收益明显，适合练习基础瞄准。</p>
+        </div>
+      </div>
+      <div class="weapon-item">
+        <div class="weapon-badge">霰弹</div>
+        <div>
+          <h3>霰弹枪</h3>
+          <p>近距离输出集中，适合狭窄通道防守，但中远距离几乎无效，使用场景较为局限。</p>
+        </div>
+      </div>
+      <div class="weapon-item">
+        <div class="weapon-badge">投掷</div>
+        <div>
+          <h3>投掷物</h3>
+          <p>闪光弹、烟雾弹与高爆手雷可封锁视野、逼迫走位或造成范围伤害，是团队进攻与防守的重要辅助手段。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 经典地图 -->
+  <section class="section" id="maps" style="padding-top:0;">
+    <div class="section-head">
+      <div>
+        <h2>经典地图结构</h2>
+        <p>网页版若还原经典玩法，通常会参考以下地图布局</p>
+      </div>
+    </div>
+    <div class="map-list">
+      <div class="map-row">
+        <span class="map-name">Dust II</span>
+        <span class="map-desc">沙漠风格双包点地图，中路视野开阔，A 大与 B 通道是常见交火点。</span>
+        <span class="map-tag">炸弹模式</span>
+      </div>
+      <div class="map-row">
+        <span class="map-name">Inferno</span>
+        <span class="map-desc">巷道密集、掩体较多，香蕉道与阁楼区域对投掷物配合要求高。</span>
+        <span class="map-tag">炸弹模式</span>
+      </div>
+      <div class="map-row">
+        <span class="map-name">Nuke</span>
+        <span class="map-desc">立体结构明显，上下层通道交错，对听声辨位与转点判断要求较高。</span>
+        <span class="map-tag">炸弹模式</span>
+      </div>
+      <div class="map-row">
+        <span class="map-name">Train</span>
+        <span class="map-desc">以列车车厢为主要掩体，视野遮挡多，适合练习近距离对枪与卡点。</span>
+        <span class="map-tag">炸弹模式</span>
+      </div>
+      <div class="map-row">
+        <span class="map-name">Italy</span>
+        <span class="map-desc">小镇场景，人质位于建筑内部，通道狭窄，营救路线需要队友掩护。</span>
+        <span class="map-tag">人质模式</span>
+      </div>
+      <div class="map-row">
+        <span class="map-name">Office</span>
+        <span class="map-desc">办公楼层结构，走廊与房间交错，适合小规模近距离遭遇战。</span>
+        <span class="map-tag">人质模式</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 入门攻略 -->
+  <section class="section" id="guide" style="padding-top:0;">
+    <div class="section-head">
+      <div>
+        <h2>网页版入门攻略</h2>
+        <p>从操作习惯到回合思路，给新玩家一份可执行的参考</p>
+      </div>
+    </div>
+    <div class="article-grid">
+      <article class="article-main">
+        <h3>先建立节奏感，再谈枪法</h3>
+        <p>
+          经典反恐精英玩法的核心并不是单纯比拼反应速度，而是回合内的资源分配与信息判断。
+          对刚接触 cs1.8反恐精英网页版的玩家来说，建议先把注意力放在三件事上：熟悉操作、理解经济、记住地图。
+        </p>
+        <ul>
+          <li><b>操作层面：</b>移动、急停、开镜、换弹与切枪是基础动作。急停后开枪能明显提升命中率，切忌边跑边扫射。</li>
+          <li><b>经济层面：</b>留意每回合的金钱余额，避免连续购买导致后续回合无力起枪。团队经济同步比个人装备更重要。</li>
+          <li><b>信息层面：</b>通过脚步、枪声和队友报点判断对方位置，减少无意义的正面硬拼。</li>
+          <li><b>枪法层面：</b>优先练习点射与短点，控制前几发子弹的落点，再逐步过渡到压枪扫射。</li>
+          <li><b>投掷物层面：</b>先掌握一两个常用烟雾与闪光点位，比盲目乱扔更有效。</li>
+        </ul>
+        <p>
+          网页版由于运行环境与客户端不同，鼠标灵敏度、画面帧率和按键响应可能与本地客户端存在差异。
+          建议进入游戏后先在空场景或练习模式中调整灵敏度与准星设置，形成稳定的肌肉记忆，再参与正式对局。
+        </p>
+        <h3 style="margin-top:22px;">团队配合的常见做法</h3>
+        <p>
+          进攻方通常需要明确分工：有人负责开路、有人负责补枪、有人负责断后。
+          防守方则需要合理分配包点人数，避免所有人挤在同一区域。
+          无论哪一方，及时报点、保持沟通、避免单独行动，都是提升胜率最直接的方式。
+        </p>
+      </article>
+      <aside class="side-list">
+        <div class="side-card">
+          <h4>新手优先练习项</h4>
+          <p>急停射击、单发点射、听声辨位、常用地图报点，这四项掌握后再考虑复杂战术。</p>
+        </div>
+        <div class="side-card">
+          <h4>灵敏度建议</h4>
+          <p>以能稳定完成 180 度转身且不丢失准星为参考，具体数值因人而异，调整后尽量不要频繁更改。</p>
+        </div>
+        <div class="side-card">
+          <h4>回合心态</h4>
+          <p>单回合失利不代表整局失败，保持经济规划与团队节奏，往往能在中后期实现翻盘。</p>
+        </div>
+        <div class="side-card">
+          <h4>设备与网络</h4>
+          <p>网页版对网络稳定性较为敏感，建议使用有线网络或稳定 Wi-Fi，并关闭占用带宽的后台程序。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 配置参考 -->
+  <section class="section" id="config" style="padding-top:0;">
+    <div class="section-head">
+      <div>
+        <h2>运行环境与配置参考</h2>
+        <p>网页版通常对硬件要求不高，但流畅度仍受设备影响</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>基本可用</th>
+            <th>较为流畅</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>浏览器</strong></td>
+            <td>主流现代浏览器</td>
+            <td>最新版本 Chrome / Edge</td>
+            <td>建议开启硬件加速</td>
+          </tr>
+          <tr>
+            <td><strong>内存</strong></td>
+            <td>4GB 及以上</td>
+            <td>8GB 及以上</td>
+            <td>内存不足易出现卡顿</td>
+          </tr>
+          <tr>
+            <td><strong>网络</strong></td>
+            <td>稳定宽带</td>
+            <td>低延迟有线网络</td>
+            <td>延迟直接影响对枪体验</td>
+          </tr>
+          <tr>
+            <td><strong>操作方式</strong></td>
+            <td>键盘 + 鼠标</td>
+            <td>键鼠 + 独立显卡</td>
+            <td>部分平台支持触屏操作</td>
+          </tr>
+          <tr>
+            <td><strong>显示设备</strong></td>
+            <td>普通显示器</td>
+            <td>高刷新率显示器</td>
+            <td>高刷新率有助于画面跟手</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="padding-top:0;">
+    <div class="section-head">
+      <div>
+        <h2>常见问题</h2>
+        <p>关于 cs1.8反恐精英网页版的常见疑问整理</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>cs1.8反恐精英网页版需要下载安装吗？</summary>
+        <div class="faq-body">
+          网页版的主要特点是无需下载大型客户端，通过浏览器打开对应页面即可进入游戏。
+          不过不同平台的具体形式不同，有的可能仍需加载一定资源，建议以实际页面提示为准。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>网页版的玩法与经典客户端版本一致吗？</summary>
+        <div class="faq-body">
+          网页版通常会参考经典反恐精英的核心机制，例如警匪对抗、回合经济、购买武器与炸弹拆除等，
+          但受浏览器性能与开发实现限制，画面表现、物理反馈和部分细节可能与客户端版本存在差异。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>手机或平板可以玩吗？</summary>
+        <div class="faq-body">
+          是否支持触屏操作取决于具体平台。部分网页版会提供虚拟按键或触屏适配，
+          但射击类玩法对精准瞄准要求较高，使用键盘和鼠标的体验通常更稳定。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>游戏卡顿或延迟高怎么办？</summary>
+        <div class="faq-body">
+          可以尝试关闭浏览器中不必要的标签页、暂停后台下载任务、开启浏览器硬件加速，
+          并优先使用有线网络。若问题依旧，可能与设备性能或网络环境有关，建议更换环境后再试。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>新手应该先练什么？</summary>
+        <div class="faq-body">
+          建议先熟悉移动与急停、掌握一两把主力步枪的点射节奏，再逐步了解地图报点和经济规划。
+          枪法可以通过练习模式反复打磨，战术意识则需要在实战中慢慢积累。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>网页版是否包含全部经典地图？</summary>
+        <div class="faq-body">
+          地图数量与种类由具体平台决定。有些网页版会还原 Dust II、Inferno 等经典地图的部分结构，
+          也有些会采用简化或原创地图，实际以游戏内可选列表为准。
+        </div>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>cs1.8反恐精英网页版</h4>
+      <p>
+        本页为经典反恐精英射击玩法的资料与入门指引页面，
+        围绕网页版游戏模式、武器系统、地图结构与操作要点进行整理，
+        帮助玩家快速了解这一类网页端射击游戏的基本形态。
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>内容导航</h4>
+      <ul>
+        <li><a href="#intro">玩法概览</a></li>
+        <li><a href="#modes">对战模式</a></li>
+        <li><a href="#weapons">武器系统</a></li>
+        <li><a href="#maps">经典地图</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>入门相关</h4>
+      <ul>
+        <li><a href="#guide">新手攻略</a></li>
+        <li><a href="#config">配置参考</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>温馨提示</h4>
+      <ul>
+        <li>合理安排游戏时间</li>
+        <li>注意用眼与作息健康</li>
+        <li>以实际平台内容为准</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 cs1.8反恐精英网页版 · 玩法资料与入门指引页面
+  </div>
+</footer>
+
+<script>
+  // 导航平滑滚动与高亮
+  (function () {
+    var navLinks = document.querySelectorAll('.nav-inner a');
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.forEach(function (l) { l.classList.remove('active'); });
+        link.classList.add('active');
+      });
+    });
+
+    // 滚动时根据区块位置更新导航高亮
+    var sections = [];
+    navLinks.forEach(function (link) {
+      var id = link.getAttribute('href');
+      if (id && id.charAt(0) === '#') {
+        var el = document.querySelector(id);
+        if (el) sections.push({ el: el, link: link });
+      }
+    });
+
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      var current = sections[0];
+      sections.forEach(function (item) {
+        if (item.el.offsetTop <= pos) current = item;
+      });
+      if (current) {
+        navLinks.forEach(function (l) { l.classList.remove('active'); });
+        current.link.classList.add('active');
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+</script>
+
+</body>
+  </html>
