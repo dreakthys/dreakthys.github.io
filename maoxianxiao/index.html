@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冒险小游戏-在线冒险游戏推荐与玩法指南</title>
+<meta name="description" content="冒险小游戏专题：整理动作冒险、解谜冒险、像素冒险、休闲闯关等在线小游戏类型，介绍玩法特点、上手技巧与选择建议，帮助你快速找到适合自己的冒险小游戏。">
+<meta name="keywords" content="冒险小游戏,在线冒险游戏,动作冒险,解谜冒险,像素冒险,闯关小游戏,休闲冒险">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+  :root{
+    --ink:#1b2233;
+    --ink-soft:#4a5568;
+    --line:#e3e7f0;
+    --bg:#f5f7fc;
+    --card:#ffffff;
+    --brand:#3d5afe;
+    --brand-dark:#2a3fd0;
+    --accent:#ff7a45;
+    --accent-soft:#fff1e9;
+    --teal:#0fb9a8;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(27,34,51,.07);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.75;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- 顶部 ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;height:66px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;font-size:20px;letter-spacing:.5px;
+    color:var(--ink);white-space:nowrap;
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--brand),var(--teal));
+    display:grid;place-items:center;
+    color:#fff;font-size:17px;font-weight:800;
+    box-shadow:0 4px 12px rgba(61,90,254,.32);
+  }
+  .nav{display:flex;gap:6px;flex-wrap:wrap;}
+  .nav a{
+    padding:7px 13px;border-radius:9px;
+    font-size:15px;color:var(--ink-soft);
+    transition:.18s;
+  }
+  .nav a:hover{background:#eef1fb;color:var(--brand);}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 380px at 12% -10%,rgba(61,90,254,.14),transparent 60%),
+      radial-gradient(700px 340px at 92% 0%,rgba(15,185,168,.14),transparent 62%),
+      #ffffff;
+    border-bottom:1px solid var(--line);
+    padding:52px 0 46px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;
+    gap:44px;align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.28;margin:0 0 16px;
+    letter-spacing:-.5px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(120deg,var(--brand),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    font-size:17px;color:var(--ink-soft);
+    margin:0 0 24px;max-width:56ch;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:11px;font-size:15px;font-weight:600;
+    border:1px solid transparent;cursor:pointer;transition:.2s;
+  }
+  .btn-primary{
+    background:var(--brand);color:#fff;
+    box-shadow:0 8px 20px rgba(61,90,254,.28);
+  }
+  .btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px);}
+  .btn-ghost{
+    background:#fff;color:var(--ink);border-color:var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand);}
+
+  .hero-tags{
+    margin-top:26px;display:flex;flex-wrap:wrap;gap:9px;
+  }
+  .hero-tags span{
+    font-size:13px;padding:5px 12px;border-radius:999px;
+    background:#f0f3fd;color:#42508a;border:1px solid #e2e7fa;
+  }
+
+  .hero-panel{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:22px;box-shadow:var(--shadow);
+  }
+  .hero-panel h2{
+    font-size:16px;margin:0 0 14px;color:var(--ink);
+    display:flex;align-items:center;gap:8px;
+  }
+  .hero-panel h2::before{
+    content:"";width:4px;height:16px;border-radius:3px;background:var(--accent);
+  }
+  .guide-list{list-style:none;margin:0;padding:0;}
+  .guide-list li{
+    display:flex;gap:12px;padding:11px 0;
+    border-bottom:1px dashed var(--line);font-size:14.5px;
+  }
+  .guide-list li:last-child{border-bottom:none;padding-bottom:0;}
+  .guide-list .num{
+    flex:0 0 24px;height:24px;border-radius:8px;
+    background:var(--accent-soft);color:var(--accent);
+    font-size:13px;font-weight:700;display:grid;place-items:center;
+    margin-top:2px;
+  }
+  .guide-list strong{display:block;font-size:15px;margin-bottom:2px;}
+  .guide-list p{margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.6;}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:52px 0;}
+  .section-head{margin-bottom:26px;}
+  .section-head .kicker{
+    font-size:13px;font-weight:700;letter-spacing:2px;
+    color:var(--brand);text-transform:uppercase;
+  }
+  .section-head h2{
+    font-size:clamp(21px,2.6vw,27px);
+    margin:8px 0 10px;letter-spacing:-.3px;
+  }
+  .section-head p{
+    margin:0;color:var(--ink-soft);font-size:15.5px;max-width:70ch;
+  }
+
+  /* ---------- 分类 ---------- */
+  .cat-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));
+    gap:18px;
+  }
+  .cat-card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px;
+    transition:.22s;position:relative;overflow:hidden;
+  }
+  .cat-card::after{
+    content:"";position:absolute;inset:auto -30px -30px auto;
+    width:96px;height:96px;border-radius:50%;
+    background:linear-gradient(135deg,rgba(61,90,254,.09),rgba(15,185,168,.09));
+  }
+  .cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#cfd8f6;}
+  .cat-icon{
+    width:44px;height:44px;border-radius:12px;
+    display:grid;place-items:center;font-size:21px;margin-bottom:14px;
+    background:#eef1fb;
+  }
+  .cat-card h3{margin:0 0 8px;font-size:17px;}
+  .cat-card p{margin:0 0 12px;font-size:14.5px;color:var(--ink-soft);}
+  .cat-card ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink-soft);}
+  .cat-card ul li{margin-bottom:4px;}
+
+  /* ---------- 推荐列表 ---------- */
+  .rec-wrap{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .rec-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:18px;
+  }
+  .rec-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;background:#fdfdff;transition:.2s;
+  }
+  .rec-card:hover{border-color:#c9d3f5;background:#fff;box-shadow:var(--shadow);}
+  .rec-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+  .rec-card h3{margin:0;font-size:16.5px;}
+  .badge{
+    font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;
+    background:#eef1fb;color:var(--brand);white-space:nowrap;
+  }
+  .badge.warm{background:var(--accent-soft);color:#d9541f;}
+  .badge.fresh{background:#e6f8f5;color:#0a8c7f;}
+  .rec-card p{margin:0 0 12px;font-size:14.5px;color:var(--ink-soft);}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:#7a8699;}
+  .meta span{background:#f4f6fb;padding:3px 9px;border-radius:6px;}
+
+  /* ---------- 技巧 ---------- */
+  .tips-layout{display:grid;grid-template-columns:1fr 320px;gap:30px;align-items:start;}
+  .tip-list{display:grid;gap:14px;}
+  .tip{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--brand);
+    border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;
+  }
+  .tip h3{margin:0 0 6px;font-size:16px;}
+  .tip p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .side-box{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;position:sticky;top:86px;
+  }
+  .side-box h3{margin:0 0 12px;font-size:16px;}
+  .side-box ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-soft);}
+  .side-box ul li{margin-bottom:8px;}
+
+  /* ---------- 选择建议 ---------- */
+  .choose-table{
+    width:100%;border-collapse:collapse;background:#fff;
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    font-size:14.5px;
+  }
+  .choose-table th,.choose-table td{
+    padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  .choose-table th{background:#f3f5fc;font-size:14px;color:#3b4763;font-weight:700;}
+  .choose-table tr:last-child td{border-bottom:none;}
+  .choose-table td:first-child{font-weight:600;white-space:nowrap;}
+  .table-scroll{overflow-x:auto;}
+
+  /* ---------- FAQ ---------- */
+  .faq-wrap{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .faq-list{display:grid;gap:12px;max-width:900px;}
+  details.faq{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:#fdfdff;padding:0;overflow:hidden;
+  }
+  details.faq[open]{border-color:#c9d3f5;background:#fff;}
+  details.faq summary{
+    cursor:pointer;list-style:none;padding:16px 20px;
+    font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;gap:14px;
+  }
+  details.faq summary::-webkit-details-marker{display:none;}
+  details.faq summary::after{
+    content:"+";color:var(--brand);font-weight:700;font-size:19px;line-height:1;
+  }
+  details.faq[open] summary::after{content:"–";}
+  details.faq .faq-body{
+    padding:0 20px 18px;font-size:14.5px;color:var(--ink-soft);
+  }
+
+  /* ---------- 页脚 ---------- */
+  .site-footer{
+    background:#151b2b;color:#a9b3c9;padding:44px 0 26px;font-size:14px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;
+    padding-bottom:26px;border-bottom:1px solid #262e42;
+  }
+  .site-footer h4{color:#fff;font-size:15px;margin:0 0 12px;}
+  .site-footer p{margin:0;line-height:1.8;}
+  .site-footer ul{list-style:none;margin:0;padding:0;}
+  .site-footer ul li{margin-bottom:8px;}
+  .site-footer ul a:hover{color:#fff;}
+  .copyright{padding-top:18px;font-size:13px;color:#7e889e;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:30px;}
+    .tips-layout{grid-template-columns:1fr;}
+    .side-box{position:static;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    body{font-size:15.5px;}
+    .header-inner{height:auto;padding:12px 0;flex-direction:column;align-items:flex-start;gap:10px;}
+    .nav{gap:2px;}
+    .nav a{padding:6px 10px;font-size:14px;}
+    .hero{padding:36px 0 34px;}
+    section{padding:38px 0;}
+    .footer-grid{grid-template-columns:1fr;}
+    .choose-table th,.choose-table td{padding:11px 12px;font-size:13.5px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="logo">
+      <span class="logo-mark">冒</span>
+      冒险小游戏指南
+    </div>
+    <nav class="nav">
+      <a href="#types">游戏类型</a>
+      <a href="#picks">热门推荐</a>
+      <a href="#tips">玩法技巧</a>
+      <a href="#choose">怎么选</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>冒险小游戏：<em>轻量上手</em>，也能玩出探索的乐趣</h1>
+        <p class="lead">
+          冒险小游戏通常指体量不大、打开即玩、以探索、闯关、解谜或剧情推进为核心的一类游戏。
+          它们不需要长时间投入，也不依赖高端设备，适合在碎片时间里体验一段完整的冒险过程。
+          下面从类型划分、玩法特点到挑选方法，帮你快速找到适合自己的那一款。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#types">查看游戏类型</a>
+          <a class="btn btn-ghost" href="#choose">如何挑选</a>
+        </div>
+        <div class="hero-tags">
+          <span>动作冒险</span>
+          <span>解谜冒险</span>
+          <span>像素冒险</span>
+          <span>剧情向</span>
+          <span>休闲闯关</span>
+          <span>地牢探索</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h2>新手快速上手四步</h2>
+        <ul class="guide-list">
+          <li>
+            <span class="num">1</span>
+            <div>
+              <strong>先明确想玩什么</strong>
+              <p>想动脑选解谜，想爽快选动作，想看故事选剧情向，方向定下来再挑会快很多。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <div>
+              <strong>看清操作方式</strong>
+              <p>键盘、鼠标还是触屏，操作是否顺手，直接决定你能不能玩下去。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <div>
+              <strong>留意单局时长</strong>
+              <p>有的游戏几分钟一关，有的需要连续推进，按自己的空闲时间选择。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">4</span>
+            <div>
+              <strong>从简单难度入门</strong>
+              <p>先熟悉地图逻辑和基础机制，再挑战高难度关卡，挫败感会低很多。</p>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 类型 -->
+  <section id="types">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Game Types</div>
+        <h2>冒险小游戏的主要类型</h2>
+        <p>“冒险”并不是一种单一玩法，而是一个涵盖探索、战斗、解谜与叙事的宽泛方向。了解类型差异，能帮你更快判断一款游戏是否合口味。</p>
+      </div>
+
+      <div class="cat-grid">
+        <article class="cat-card">
+          <div class="cat-icon">⚔️</div>
+          <h3>动作冒险类</h3>
+          <p>以实时操作、闪避与战斗为核心，节奏偏快，强调反应和手感。</p>
+          <ul>
+            <li>横版闯关与平台跳跃</li>
+            <li>地牢探索与随机地图</li>
+            <li>适合喜欢即时反馈的玩家</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon">🧩</div>
+          <h3>解谜冒险类</h3>
+          <p>通过观察、推理和道具组合推动流程，重思考、轻操作。</p>
+          <ul>
+            <li>密室逃脱式场景</li>
+            <li>机关与线索串联</li>
+            <li>适合喜欢慢慢琢磨的玩家</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon">🕹️</div>
+          <h3>像素与复古风</h3>
+          <p>画面简洁、体积小巧，往往在玩法设计上更纯粹。</p>
+          <ul>
+            <li>低配置设备也能流畅运行</li>
+            <li>关卡结构清晰易上手</li>
+            <li>怀旧感强，节奏自由</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon">📖</div>
+          <h3>剧情叙事类</h3>
+          <p>以对话、选择和情节推进为主，冒险感来自故事本身。</p>
+          <ul>
+            <li>多结局与分支选择</li>
+            <li>角色塑造与氛围营造</li>
+            <li>适合喜欢沉浸阅读的玩家</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon">🌿</div>
+          <h3>休闲探索类</h3>
+          <p>没有失败压力，以收集、漫步和轻度目标为主。</p>
+          <ul>
+            <li>节奏舒缓，随时可停</li>
+            <li>适合放松和短时游玩</li>
+            <li>操作门槛低</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon">🏃</div>
+          <h3>跑酷与无尽闯关</h3>
+          <p>不断向前推进，用一次次的失败换取更远的距离。</p>
+          <ul>
+            <li>单局时间短</li>
+            <li>重复可玩性高</li>
+            <li>适合练手感与追求分数</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐 -->
+  <section id="picks" class="rec-wrap">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Recommendations</div>
+        <h2>值得尝试的冒险小游戏方向</h2>
+        <p>下面按玩法特征归纳几类常见且口碑稳定的方向。它们不代表唯一选择，但可以作为你筛选游戏时的参考坐标。</p>
+      </div>
+
+      <div class="rec-grid">
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>横向卷轴闯关</h3>
+            <span class="badge">经典耐玩</span>
+          </div>
+          <p>从左到右推进，途中躲避陷阱、击败敌人、收集道具。关卡设计往往层层递进，越到后面越考验节奏感与路线判断。</p>
+          <div class="meta"><span>操作直观</span><span>关卡制</span><span>难度递增</span></div>
+        </article>
+
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>地牢探索类</h3>
+            <span class="badge warm">高重玩性</span>
+          </div>
+          <p>地图与敌人配置常带有随机性，每次进入体验都不完全相同。核心乐趣在于资源取舍、路线选择和临场应变。</p>
+          <div class="meta"><span>随机地图</span><span>资源管理</span><span>反复挑战</span></div>
+        </article>
+
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>密室与机关解谜</h3>
+            <span class="badge fresh">动脑为主</span>
+          </div>
+          <p>在有限场景中寻找线索、组合道具、破解机关。适合喜欢安静推理、不追求操作速度的玩家。</p>
+          <div class="meta"><span>线索收集</span><span>逻辑推理</span><span>节奏舒缓</span></div>
+        </article>
+
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>平台跳跃挑战</h3>
+            <span class="badge">手感至上</span>
+          </div>
+          <p>以精准跳跃和时机把控为核心，关卡短小但要求高。反复尝试后通关的成就感非常直接。</p>
+          <div class="meta"><span>精准操作</span><span>短关卡</span><span>练手感</span></div>
+        </article>
+
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>叙事选择向冒险</h3>
+            <span class="badge fresh">重故事</span>
+          </div>
+          <p>通过对话与选择推动情节，不同决定可能导向不同结果。适合把游戏当作互动故事来体验的玩家。</p>
+          <div class="meta"><span>分支剧情</span><span>多结局</span><span>沉浸感</span></div>
+        </article>
+
+        <article class="rec-card">
+          <div class="rec-top">
+            <h3>休闲收集探索</h3>
+            <span class="badge warm">轻松无压</span>
+          </div>
+          <p>没有严格的失败惩罚，边逛边收集，慢慢解锁新区域。适合下班后或睡前放松游玩。</p>
+          <div class="meta"><span>无压力</span><span>收集要素</span><span>随时可停</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技巧 -->
+  <section id="tips">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Play Guide</div>
+        <h2>提升体验的实用玩法建议</h2>
+        <p>冒险小游戏的门槛通常不高，但掌握一些通用思路，能让过程更顺畅，也更容易体会到设计者的用心。</p>
+      </div>
+
+      <div class="tips-layout">
+        <div class="tip-list">
+          <article class="tip">
+            <h3>先摸清地图结构再推进</h3>
+            <p>进入新场景时，先大致走一圈记住关键位置，比如存档点、补给点和分岔路口。后面回头找线索时会省下大量时间。</p>
+          </article>
+          <article class="tip">
+            <h3>不要忽略看似无用的道具</h3>
+            <p>解谜类游戏中，很多道具在当下没有用途，却会在后续场景派上用场。养成随身带着、必要时逐一尝试的习惯。</p>
+          </article>
+          <article class="tip">
+            <h3>失败后复盘而不是硬冲</h3>
+            <p>连续卡在同一处时，先停下来观察敌人的行动规律或机关的触发节奏，找到规律后的成功率往往远高于盲目重试。</p>
+          </article>
+          <article class="tip">
+            <h3>合理分配资源与血量</h3>
+            <p>在地牢或闯关类游戏里，补给通常有限。能绕开的战斗尽量绕开，把资源留给真正难缠的对手。</p>
+          </article>
+          <article class="tip">
+            <h3>适当调整难度与操作设置</h3>
+            <p>如果游戏提供灵敏度、按键或辅助选项，按自己的习惯调整，比强行适应默认设置更容易坚持下去。</p>
+          </article>
+          <article class="tip">
+            <h3>控制单次游玩时长</h3>
+            <p>冒险类游戏容易让人想“再来一关”。设定一个大致的时间上限，反而能保持新鲜感，避免疲劳后操作变形。</p>
+          </article>
+        </div>
+
+        <aside class="side-box">
+          <h3>游玩前的检查清单</h3>
+          <ul>
+            <li>确认设备性能与游戏要求是否匹配</li>
+            <li>了解是否需要联网或登录账号</li>
+            <li>查看是否支持存档与进度保存</li>
+            <li>注意页面是否存在诱导下载或弹窗</li>
+            <li>优先选择来源清晰、口碑稳定的平台</li>
+            <li>为长时间游玩安排适当休息</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 选择建议 -->
+  <section id="choose">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">How To Choose</div>
+        <h2>按需求挑选适合自己的冒险小游戏</h2>
+        <p>同样叫“冒险”，不同作品的侧重点差别很大。先想清楚自己的时间和偏好，再对照下表筛选，效率会高很多。</p>
+      </div>
+
+      <div class="table-scroll">
+        <table class="choose-table">
+          <thead>
+            <tr>
+              <th>你的需求</th>
+              <th>推荐方向</th>
+              <th>关注要点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>只有零碎时间</td>
+              <td>跑酷、短关卡闯关、休闲探索</td>
+              <td>单局时长是否可控，能否随时暂停或退出</td>
+            </tr>
+            <tr>
+              <td>想动脑解压</td>
+              <td>解谜冒险、机关密室</td>
+              <td>提示系统是否完善，卡关时是否有引导</td>
+            </tr>
+            <tr>
+              <td>追求操作快感</td>
+              <td>动作冒险、平台跳跃</td>
+              <td>手感是否流畅，难度曲线是否合理</td>
+            </tr>
+            <tr>
+              <td>喜欢看故事</td>
+              <td>剧情叙事、选择分支类</td>
+              <td>文本量、分支数量与结局设计</td>
+            </tr>
+            <tr>
+              <td>设备配置有限</td>
+              <td>像素风、文字冒险、轻量网页游戏</td>
+              <td>体积大小、运行流畅度与兼容性</td>
+            </tr>
+            <tr>
+              <td>想长期反复玩</td>
+              <td>地牢探索、随机生成类</td>
+              <td>内容更新频率与重复可玩性</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-wrap">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">FAQ</div>
+        <h2>关于冒险小游戏的常见问题</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq" open>
+          <summary>冒险小游戏和大型冒险游戏有什么区别？</summary>
+          <div class="faq-body">
+            主要差别在体量与投入成本。冒险小游戏一般规则更简单、单局时间更短、对设备要求更低，适合随时打开玩一会儿；大型冒险游戏则在画面、剧情和系统深度上投入更多，通常需要较长的连续游玩时间。
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>玩冒险小游戏需要很高的操作水平吗？</summary>
+          <div class="faq-body">
+            不一定。解谜类、剧情类和休闲探索类对操作要求很低，重点在思考和体验；只有动作冒险、平台跳跃等类型会比较看重反应速度。挑选时可以先看类型，再决定是否符合自己的操作习惯。
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>在网页上玩冒险小游戏要注意什么？</summary>
+          <div class="faq-body">
+            建议优先选择来源清晰、页面整洁的平台，留意是否有强制跳转、诱导下载或频繁弹窗。同时避免在不明页面输入账号密码等敏感信息，游玩时间较长时也要注意适当休息。
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>卡关了怎么办？</summary>
+          <div class="faq-body">
+            可以先回到之前的区域重新检查是否有遗漏的线索或道具，也可以尝试换一种思路使用已有物品。多数解谜游戏的关键线索都藏在已经走过的场景里，只是当时没有注意到。
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>冒险小游戏适合儿童玩吗？</summary>
+          <div class="faq-body">
+            需要具体看游戏内容。部分休闲探索和解谜类作品节奏平和、画面简洁，相对适合年龄较小的玩家；但涉及战斗、恐怖氛围或复杂剧情的作品则建议家长先行了解内容，再决定是否适合。
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>怎样判断一款冒险小游戏是否值得长期玩？</summary>
+          <div class="faq-body">
+            可以观察几点：关卡或地图是否有足够变化、是否有持续的更新内容、失败后的重试成本是否合理、以及你在玩过几次之后是否仍有探索欲望。满足其中多数条件，通常就比较耐玩。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>冒险小游戏指南</h4>
+        <p>
+          一个围绕轻量冒险类游戏整理内容的信息页面，涵盖类型介绍、玩法思路与挑选建议，
+          帮助玩家在有限时间里找到合适的游戏方向。
+        </p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#types">游戏类型</a></li>
+          <li><a href="#picks">热门推荐</a></li>
+          <li><a href="#tips">玩法技巧</a></li>
+          <li><a href="#choose">怎么选</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>温馨提示</h4>
+        <ul>
+          <li>合理安排游戏时间</li>
+          <li>注意甄别页面来源</li>
+          <li>保护个人账号信息</li>
+          <li>适度娱乐，注意休息</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>冒险小游戏指南 · 内容仅供参考</span>
+      <span>请以实际游戏体验为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 平滑滚动并处理固定页头遮挡
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = this.getAttribute('href');
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var header = document.querySelector('.site-header');
+      var offset = header ? header.offsetHeight + 12 : 12;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // 同一时间只展开一个常见问题
+  var faqs = document.querySelectorAll('details.faq');
+  faqs.forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (this.open) {
+        faqs.forEach(function (other) {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+  </html>
